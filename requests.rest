@@ -1,0 +1,55 @@
+GET HTTP://localhost:9000/
+
+###
+GET HTTP://localhost:9000/permit
+
+###
+POST HTTP://localhost:9000/permit
+Content-Type: application/json
+
+{
+    "email_address": "hotmail1@hotmail.com",
+    "password": "asdf123"
+}
+
+###
+POST HTTP://localhost:9000/permit/login
+Content-Type: application/json
+
+{
+    "email_address": "hotmail@hotmail.com",
+    "password": "asdf1234"
+}
+
+###
+
+POST HTTP://localhost:9000/permit/login
+Content-Type: application/json
+
+{
+    "email_address": "hotmail@hotmail.com",
+    "password": "asdf12345"
+}
+
+###
+GET HTTP://localhost:9000/creation
+
+###
+GET HTTP://localhost:9000/forest
+
+###
+GET HTTP://localhost:9000/deforested
+
+###
+
+GET HTTP://localhost:9000/forest/647f436a95895a0118631999
+###
+
+POST HTTP://localhost:9000/forest/647f436a95895a0118631999
+Content-Type: application/json
+
+{
+    "purpose": "c_info",
+    "email": "hotmail@hotmail.com",
+    "password": "asdf12345"
+}

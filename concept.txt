@@ -1,0 +1,99 @@
+Mighty Fine Logging 
+Lunmber-Themed Financial Logging 
+
+
+I want the data to be encrypted when stored and communicated
+
+This means the processing will have to be done client-side
+
+Use hashed PW to query database?
+  return with object ID
+  get '/:id' 
+
+
+Transaction 
+CRUD Request
+
+URL/:ID
+
+
+POST 
+
+body:{
+    type: what kind of transaction is it 
+    password: confirm hashed pw 
+    content: {
+        body object 
+    }
+}
+
+{users: {
+    {
+        email: testing123@testing.com,
+        password: pswrd123,
+        income: [
+            {        
+                date: obj,
+                value: num,
+                source: string
+                }
+        ],
+        expenses: [
+            {
+                value: number,
+                location: string,
+                date: string
+            }
+        ],
+        savings: {
+            
+        }
+    }
+}}
+
+
+
+Income 
+- Calculates Saving % 
+- Calculates amount needed for monthly bills 
+- Hours Worked
+- Tracks smaller income
+
+
+
+Monthly Expenses 
+- Company
+- Due Date
+- Contact Website 
+- Value 
+
+
+Daily Expenditures
+- date 
+- location 
+- purpose 
+- value 
+- Tracks Food Expenses
+
+Savings
+- deposits 
+- withdrawls 
+
+GET url:port
+ /forestRoutes 
+   session handler that returns the session ID
+     getrandom(from list of sessions) 
+   redirects to url:port/forest/SESSION_ID
+
+
+url:port/forest/SESSION_ID
+
+session handler 
+list of 50 objects 
+get requests returns random session's id 
+user provides login info 
+client provides session with email and hashed pw 
+session looks up by email 
+  confirms via password 
+session returns hashed userdata 
+client uses pin to decrypt userdata 
