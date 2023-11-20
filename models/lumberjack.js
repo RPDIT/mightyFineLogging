@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import impoundmentSchema from './impoundment.js'
 
 const lumberjackSchema = new mongoose.Schema({
     email_address: {
@@ -10,8 +11,8 @@ const lumberjackSchema = new mongoose.Schema({
         required: true, 
         length: 6
     },
-    felled_logs: {
-        type: Object
+    impoundment: {
+        impoundmentSchema
     },
     created: {
         type: Date,

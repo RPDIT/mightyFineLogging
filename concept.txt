@@ -4,8 +4,6 @@ Lunmber-Themed Financial Logging
 
 I want the data to be encrypted when stored and communicated
 
-This means the processing will have to be done client-side
-
 Use hashed PW to query database?
   return with object ID
   get '/:id' 
@@ -14,7 +12,7 @@ Use hashed PW to query database?
 Transaction 
 CRUD Request
 
-URL/:ID
+URL/permit/:ID
 
 
 POST 
@@ -57,7 +55,7 @@ Income
 - Calculates Saving % 
 - Calculates amount needed for monthly bills 
 - Hours Worked
-- Tracks smaller income
+- Tracks decreases in income
 
 
 
@@ -73,14 +71,14 @@ Daily Expenditures
 - location 
 - purpose 
 - value 
-- Tracks Food Expenses
+- Tracks specific Expenses
 
 Savings
 - deposits 
 - withdrawls 
 
 GET url:port
- /forestRoutes 
+ /forest
    session handler that returns the session ID
      getrandom(from list of sessions) 
    redirects to url:port/forest/SESSION_ID
@@ -88,6 +86,8 @@ GET url:port
 
 url:port/forest/SESSION_ID
 
+
+// 
 session handler 
 list of 50 objects 
 get requests returns random session's id 

@@ -1,3 +1,5 @@
+// interface with the DB 
+
 import Session from '../models/session.js';
 
 

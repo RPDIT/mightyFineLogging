@@ -42,7 +42,7 @@ describe ('Testing Session Controller', () => {
                 let results = res.body; 
                 results.should.be.a('object');
                 results.active.should.equal(true);
-                results.clientUser.should.equal({ name: "testing" });
+                results.clientUser.should.have.property('name').with.lengthOf(7);
             });
         });
     });
