@@ -12,16 +12,17 @@ user_list = asyncHandler(async (req,res,next) => {
 
 create_user = asyncHandler(async (req,res,next) => {
     console.log(req.body);
+    bcrypt.hash(req.body.password, 10, async(err, pw) => {
+        try {
+            const newLumberjack = await lumberServices.user_creation(req.body.email_address, pw);
+            console.log("New user created with email address: "+ newLumberjack.email_address + "\n At: " + newLumberjack.created);
+            res.json(newLumberjack);
+            
+        } catch (error) {
+            res.status(error).send(" Error!");
+        };
+    });
     
-    
-    try {
-        const newLumberjack = await lumberServices.user_creation(req.body.email_address, pw);
-        console.log("New user created with email address: "+ newLumberjack.email_address + "\n At: " + newLumberjack.created);
-        res.json(newLumberjack);
-        
-    } catch (error) {
-        res.status(error).send(" Error!");
-    };
 });
 
 find_user = asyncHandler(async (req,res,next) => {

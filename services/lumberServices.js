@@ -1,5 +1,4 @@
 import Lumberjack from '../models/lumberjack.js';
-import bcrypt from "bcrypt";
 
 
 let Services

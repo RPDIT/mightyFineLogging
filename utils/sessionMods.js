@@ -1,5 +1,7 @@
+// Utility Functions for the Session Object
 
 let sessionUtils;
+
 function sessionReset (session_obj) {
     session_obj.active = false;
     session_obj.clientUser = {};
