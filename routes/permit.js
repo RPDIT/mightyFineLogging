@@ -14,6 +14,7 @@ router.get('/',lumberController.user_list);
 // router.get('/:id', lumberController.find_user)
 router.post('/', lumberController.create_user);
 router.post('/login', lumberController.find_user);
+router.delete('/login', lumberController.delete_user);
 
 export default router;
 

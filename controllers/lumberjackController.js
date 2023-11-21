@@ -2,7 +2,7 @@ import asyncHandler from "express-async-handler";
 import lumberServices from "../services/lumberServices.js";
 import bcrypt from "bcrypt"
 
-let user_list, create_user, find_user, reset_session
+let user_list, create_user, find_user, delete_user
 let lumber_controller
 
 
@@ -25,37 +25,62 @@ create_user = asyncHandler(async (req,res,next) => {
     
 });
 
-find_user = asyncHandler(async (req,res,next) => {
-    let user_status,db_data, pw;
-    let results_list = await lumberServices.user_by_email(req.body.email_address);
-    pw = await bcrypt.hash(req.body.password, 10);
-    // console.log(results_list)
-
+find_user = asyncHandler(async (req,res,next) => { // Parts of this function and delete user may be able to be moved into their own functions or run as a middlewear
+    let user_status, found_results
+    const  results_list = await lumberServices.user_by_email(req.body.email_address );
+    console.log(results_list);
     if (results_list.length === 0) {
         res.send("No User Found")
     } else {
         for (let i = 0; i < results_list.length; i++) {
             let current_result = results_list[i];
-            if (bcrypt.compare(req.body.password, current_result.password)) {
-                user_status = true;
-                db_data = current_result
-                let found_results = {
+            bcrypt.compare(req.body.password, current_result.password,(err, result) => {
+                console.log(`Nice password: ${result}`);
+                if (result =! true){
+                    user_status = false;
+                    found_results = {
                     user_exists: user_status,
-                    user_data: db_data
-                };
-                res.json(found_results);
-            } else {
-                user_status = false;
-                let found_results = {
-                    user_exists: user_status,
-                    user_data: []
-                };
-                res.json(found_results);
+                    user_data: "No User"
+                    };
+                    console.log(err);
+                    return res.send(err);
+                } else {
+                    user_status = true;
+                    found_results = {
+                        user_exists: user_status,
+                        user_data: current_result
+                    };
+                    return res.json(found_results);
+            }
+    })};}    
+});
+
+delete_user = asyncHandler(async(req, res) => {
+    const  results_list = await lumberServices.user_by_email(req.body.email_address );
+    console.log(results_list);
+    if (results_list.length != 0) {
+        for (let i = 0; i < results_list.length; i++) {
+            let current_result = results_list[i];
+    //         bcrypt.compare(req.body.password, current_result.password,(err, result) => {
+    //             console.log(`Nice password: ${result}`);
+    //             if (result =! true){
+    //                 res.send("Nothing was deleted")
+    //             } else {
+    //                 let results = await lumberServices.delete_user(current_result._id)
+    //                 res.json(results);
+    //         }.
+    // })}
+            const comparison = bcrypt.compareSync(req.body.password, current_result.password);
+            if (comparison == true) {
+                let results = await lumberServices.delete_user(current_result._id)
+                res.json(results);
             };
-    };}
-    
+        };
+    } else {
+        res.send("No User Deleted")
+    };
 });
 
 
 
-export default lumber_controller = {user_list, create_user, find_user};
+export default lumber_controller = {user_list, create_user, find_user, delete_user};

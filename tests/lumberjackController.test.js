@@ -14,30 +14,24 @@ class newTest {
         this.email = email;
         this.password = password;
     }
-    getRequest (route, typeAssertion) {
+    getRequest (route) {
         chai.request(server)
             .get('/'+ route)
             .end((err,res) => {
-                let results = res.body;
-                let test_result = results[0];
-                console.log(test_result)
-                results.should.be.a(typeAssertion);
+                this.data =  res.body;
             })};
 
-
-    createUser () {
+    postRequest (route) {
+        console.log(this.email, this.password)
         chai.request(server)
-            .post('/permit', (req, err) => {
+            .post(route, (req, err) => {
                 req.body = {
                     "email_address": this.email,
                     "password": this.password
                 }
             })
             .end((err,res) => {
-                let results = res.body;
-                console.log(results)
-                results.should.be.a('object');
-                
+                this.data = res.body;
             })};
 }
 
@@ -45,13 +39,50 @@ describe ('Testing Lumberjack (User) Controller', () => {
     const testUser = new newTest(faker.internet.email(), faker.internet.password())
     // console.log(testUser.email, testUser.password);
     describe ('GET /permit', () => {
-        it ('It should return an array', async () => {
-            testUser.getRequest('permit', 'array');
+        it ('It should return an array', () => {
+            chai.request(server)
+                .get('/permit')
+                .end((err,res) => {
+                    res.body.should.be.a('array');
+            })
+            
         });
     });
-    describe ('POST /PERMIT', () => {
-        it ('It should return a new user Object', async () => {
-            testUser.createUser()
+    describe ('POST /permit to create a new User', () => {
+        it ('It should return a new user Object', () => {
+            chai.request(server)
+            .post('/permit', (req, err) => {
+                req.body = {
+                    "email_address": this.email,
+                    "password": this.password
+                }
+            })
+            .end((err,res) => {
+                res.body.should.be.a('object');
+                res.body.should.have.property('email_address');
+            })
+            
         })
+    })
+    describe ('POST /login to return a single user', () => {
+        const testEmail= "creationTesting@gmail.de"
+        const testPw = "a&+_/asdfb4"
+        it (`It shoud return the user ${testEmail}`, async () => {
+            chai.request(server)
+            .post('/permit', (req, err) => {
+                req.body = {
+                    "email_address": testEmail,
+                    "password": testPw
+                }
+            })
+            .end((err,res) => {
+                console.log(res.body)
+                res.body.should.be.a('object');
+                res.body.should.have.property('userData');
+                res.body.userData.email_address.should.equal(testEmail);
+                console.log(testEmail, res.body.userData.email_address)
+        })
+            })
+            
     })
 })
