@@ -6,7 +6,7 @@ Node.JS based financial logging API.
 
 This is a WIP that has been progressing alongisde my understanding of coding and web/API development.
 
-The basis of this project is a MongoDB Database utilizing two collections, one of users and one of transactions. Each user has many transactions while each transaction has a single user that is its owner.
+The basis of this project is a MongoDB Database utilizing two collections, one of users and one of transactions. Each user has many transactions while each transaction has a single user as its owner.
 
 The User has an array of object id's for each transaction it has created; each transaction has an element that is the object id of the owner of the transaction.
 
@@ -14,16 +14,16 @@ The structure:
 Request the permit route to get userID
 Utilize UserID to get all of its transactions.
 
-Goal:
-Allow a user to enter their monthly expenses, categorized and titled appropriately, and use that information to create a savings % calculator to dictate how much of their income should be put away towards each purpose.
-
-Allow a user to maintain a running total of how much has been contributed to each financial purpose and add/remove transactions (both positive and negative) that affect the values/totals.
-
-Purposes:
+Financial Purposes:
 
 - Rent / Monthly Expenses
 - Savings
 - Funds for food/day-to-day expenses
+
+Goal:
+Allow a user to enter their monthly expenses, categorized and titled appropriately, and use that information to create a savings % calculator to dictate how much of their income should be put away towards each purpose.
+
+Allow a user to maintain a running total of how much has been contributed to each financial purpose and add/remove transactions (both positive and negative) that affect the values/totals.
 
 ## Dependencies
 
