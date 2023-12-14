@@ -104,13 +104,13 @@ GET http://localhost:9000/the-dam/transaction/65467cc8d106994bac5d6319
 
 ### 
 
-POST http://localhost:9000/the-dam/transaction/6578e24d16597888ec82232f
+POST http://localhost:9000/the-dam/transaction/655c0a5007b8d4b3dcb17d16
 Content-Type: application/json
 
 {
     "company": "Tech Company",
     "transType": "Wages",
-    "dolValue": 2600
+    "dolValue": 957
 }
 
 ### 

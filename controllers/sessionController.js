@@ -2,8 +2,8 @@
 import { v4 as uuidv4 } from 'uuid';
 import fs from 'fs';
 import expressAsyncHandler from "express-async-handler";
-import sessionUtils from '../utils/sessionMods.js';
-import SessionServices from '../services/sessionServices.js';
+import sessionUtils from '../utils/session.js';
+import SessionServices from '../services/session.js';
 import { query } from 'express';
 let sessionList, findSession, newSession, randomSessionGenerator, sessionTimeout, updateSessionUser, sessionByStatus, clearSession, testingSession;
 let session_funcs,  availableSessions, unavailableSessions;

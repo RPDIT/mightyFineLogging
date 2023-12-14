@@ -6,9 +6,6 @@ const impoundmentSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
-    // income: [{transactionSchema}],
-    // monthly_expenses: [{transactionSchema}],
-    // expenditure: [{transactionSchema}],
     transactions: {
         type: Array, 
         required: true, 

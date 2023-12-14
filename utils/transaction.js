@@ -1,7 +1,7 @@
 let utils;
 
 function getRunningTotal(transactions) {
-    const running_total = transactions.reduce((accumulator, value) => accumulator + value.dolValue, 0);
+    const running_total = transactions.reduce((accumulator, transaction) => accumulator + transaction.dolValue, 0);
     return running_total;
 };
 

@@ -3,20 +3,20 @@ import mongoose from "mongoose";
 const transactionSchema = new mongoose.Schema({
     company: {
         type: String, 
-        required: true,
+        required: [true, 'You need to note who the transaction was with.'],
     },
     DOT: {
         type: Date,
-        required: true,
+        required: [true, 'The date of the transaction is required for documentation.'],
         default: Date.now()
     },
     transType: {
         type: String,
-        required: true,
+        required: [true, 'The type of transaction will help us understand why it occurred.']
     },
     dolValue: {
         type: Number, 
-        rquired: true, 
+        rquired: [true, 'The value of the transaction is required.'], 
         default: 0
     },
     created: {

@@ -1,15 +1,18 @@
 import mongoose from 'mongoose';
 import impoundmentSchema from './impoundment.js'
+import isEmail from 'validator/lib/isEmail.js'
 
 const lumberjackSchema = new mongoose.Schema({
     email_address: {
         type: String,
+        lowercase: true,
+        validate: [isEmail, 'invalid email'],
         required: true,
     },
     password: {
         type: String,
         required: true, 
-        length: 6
+        minLength: [6, 'password is too short']
     },
     impoundment: impoundmentSchema,
     created: {
