@@ -28,7 +28,6 @@ create_user = asyncHandler(async (req,res,next) => {
 find_user = asyncHandler(async (req,res,next) => { // Parts of this function and delete user may be able to be moved into their own functions or run as a middlewear
     let user_status, found_results
     const  results_list = await lumberServices.user_by_email(req.body.email_address );
-    console.log(results_list);
     if (results_list.length === 0) {
         res.send("No User Found")
     } else {
@@ -36,14 +35,13 @@ find_user = asyncHandler(async (req,res,next) => { // Parts of this function and
             let current_result = results_list[i];
             bcrypt.compare(req.body.password, current_result.password,(err, result) => {
                 console.log(`Nice password: ${result}`);
-                if (result =! true){
+                if (result != true){
                     user_status = false;
                     found_results = {
                     user_exists: user_status,
                     user_data: "No User"
                     };
-                    console.log(err);
-                    return res.send(err);
+                    return res.send(found_results);
                 } else {
                     user_status = true;
                     found_results = {
@@ -57,19 +55,9 @@ find_user = asyncHandler(async (req,res,next) => { // Parts of this function and
 
 delete_user = asyncHandler(async(req, res) => {
     const  results_list = await lumberServices.user_by_email(req.body.email_address );
-    console.log(results_list);
     if (results_list.length != 0) {
         for (let i = 0; i < results_list.length; i++) {
             let current_result = results_list[i];
-    //         bcrypt.compare(req.body.password, current_result.password,(err, result) => {
-    //             console.log(`Nice password: ${result}`);
-    //             if (result =! true){
-    //                 res.send("Nothing was deleted")
-    //             } else {
-    //                 let results = await lumberServices.delete_user(current_result._id)
-    //                 res.json(results);
-    //         }.
-    // })}
             const comparison = bcrypt.compareSync(req.body.password, current_result.password);
             if (comparison == true) {
                 let results = await lumberServices.delete_user(current_result._id)

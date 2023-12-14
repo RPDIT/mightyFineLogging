@@ -1,6 +1,10 @@
 import mongoose from "mongoose";
 
 const transactionSchema = new mongoose.Schema({
+    company: {
+        type: String, 
+        required: true,
+    },
     DOT: {
         type: Date,
         required: true,
@@ -12,13 +16,24 @@ const transactionSchema = new mongoose.Schema({
     },
     dolValue: {
         type: Number, 
-        rquired: true
+        rquired: true, 
+        default: 0
     },
     created: {
         type: Date,
         required: true, 
         default: Date.now()
+    },
+    owner: {
+        type: String,
+        required: true
+    },
+    purpose: {
+        type: String, 
+        required: false
     }
 })
 
-export default transactionSchema;
+const Transaction = mongoose.model('Transaction', transactionSchema)
+
+export default Transaction;

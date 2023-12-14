@@ -8,8 +8,8 @@ POST HTTP://localhost:9000/permit
 Content-Type: application/json
 
 {
-    "email_address": "",
-    "password": ""
+    "email_address": "newest@gmail.com",
+    "password": "goodlord123"
 }
 
 ###
@@ -67,7 +67,7 @@ Content-Type: application/json
 
 ###
 
-POST HTTP://localhost:9000/permit/login
+POST HTTP://localhost:9000/permit/login 
 Content-Type: application/json
 
 {
@@ -97,3 +97,48 @@ Content-Type: application/json
     "email": "hotmail@hotmail.com",
     "password": "asdf12345"
 }
+
+### 
+
+GET http://localhost:9000/the-dam/transaction/65467cc8d106994bac5d6319
+
+### 
+
+POST http://localhost:9000/the-dam/transaction/6578e24d16597888ec82232f
+Content-Type: application/json
+
+{
+    "company": "Tech Company",
+    "transType": "Wages",
+    "dolValue": 2600
+}
+
+### 
+
+GET http://localhost:9000/the-dam/transaction/6578e24d16597888ec82232f
+
+### 
+
+GET http://localhost:9000/the-dam/creation/6578e24d16597888ec82232f
+
+### 
+
+GET http://localhost:9000/the-dam/transaction/
+
+###
+POST HTTP://localhost:9000/permit/login
+Content-Type: application/json
+
+{
+    "email_address": "newest@gmail.com",
+    "password": "goodlord123"
+}
+
+
+
+
+
+
+
+
+

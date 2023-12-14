@@ -8,6 +8,7 @@ import cors from 'cors';
 import morgan from 'morgan';
 import mongoose from 'mongoose';
 import permitRoutes from './routes/permit.js';
+import impoundmentRoutes  from './routes/impoundment.js';
 
 dotenv.config();
 const app = express();
@@ -34,6 +35,7 @@ function loadMiddlewears() {
 function addRoutes() {
     app.use('/', forestRoutes);
     app.use('/permit', permitRoutes)
+    app.use('/the-dam', impoundmentRoutes);
 }
 
 function main() {

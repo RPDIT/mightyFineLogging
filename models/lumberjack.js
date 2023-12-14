@@ -11,9 +11,7 @@ const lumberjackSchema = new mongoose.Schema({
         required: true, 
         length: 6
     },
-    impoundment: {
-        impoundmentSchema
-    },
+    impoundment: impoundmentSchema,
     created: {
         type: Date,
         required: true, 

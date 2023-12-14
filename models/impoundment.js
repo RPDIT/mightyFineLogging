@@ -1,14 +1,19 @@
 import mongoose from 'mongoose';
-import transactionSchema from './transaction.js'
+import Transaction from './transaction.js'
 
 const impoundmentSchema = new mongoose.Schema({
     running_total : {
         type: Number,
-        required: false,
+        required: true,
     },
-    income: [{transactionSchema}],
-    monthly_expenses: [{transactionSchema}],
-    expenditure: [{transactionSchema}],
+    // income: [{transactionSchema}],
+    // monthly_expenses: [{transactionSchema}],
+    // expenditure: [{transactionSchema}],
+    transactions: {
+        type: Array, 
+        required: true, 
+        default: [],
+    },
     created: {
         type: Date,
         required: true,

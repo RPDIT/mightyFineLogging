@@ -84,19 +84,6 @@ randomSessionGenerator = expressAsyncHandler(async(req,res,next) => {
     }
 });
 
-// sessionTimeout = async function (single_session) {
-//     console.log("Executing timeout");
-//     single_session.active = false 
-//     single_session.clientUser = {};
-//     single_session.dbResults = {};
-//     single_session.edited = Date.now();
-//     try {
-//         await single_session.save();
-//     } catch (error) {
-//         return error;
-//     }
-// }
-
 updateSessionUser = expressAsyncHandler(async(req,res,next) => { // pull session from param ID, check for what has been edited 
     let client_info, db_results, active_status, query_id, current_session;
     query_id = req.params.id;
